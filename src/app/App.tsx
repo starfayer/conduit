@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { HashRouter, Route, Routes } from 'react-router-dom';
 import { FeedPage } from '../pages/feed';
 import { Header } from '../shared/ui';
 import { RegisterPage, SignInPage } from '../pages/sign-in';
@@ -52,7 +52,7 @@ export const UserProvider = (props: any) => {
 function App() {
   return (
     <UserProvider>
-      <BrowserRouter>
+      <HashRouter>
         <Header/>
         <Routes>
           <Route path="/" element={<FeedPage />} />
@@ -65,7 +65,7 @@ function App() {
 
           <Route path="*" element={<NotFoundPage />} /> 
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
     </UserProvider>
   );
 }

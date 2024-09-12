@@ -3,13 +3,14 @@
   "private": true,
   "version": "0.0.1",
   "type": "module",
+  "homepage": "https://starfayer.github.io/realworld",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "generate-api-types": "openapi-typescript https://raw.githubusercontent.com/gothinkster/realworld/main/api/openapi.yml --output ./shared/api/v1.d.ts",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "openapi-fetch": "^0.9.5",
