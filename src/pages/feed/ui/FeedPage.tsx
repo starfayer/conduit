@@ -25,27 +25,28 @@ export function FeedPage() {
   const queryTag = searchParams.get("tag") ?? undefined;
   const [activeTag, setActiveTag] = useState<string | undefined>(queryTag);
 
-  const getTabs = () => {
+  const getTabs = (optionalTab?: string) => {
     const tabs = [];
     if (user) {
-      tabs.push(Tabs.yours)
+      tabs.push(Tabs.yours);
     }
     tabs.push(Tabs.global);
-    if (activeTag) {
-      tabs.push(activeTag);
+    if (optionalTab) {
+      tabs.push(optionalTab);
     }
     return tabs;
   }
-  const [tabs, setTabs] = useState<string[]>(getTabs());
+  const [tabs, setTabs] = useState<string[]>(getTabs(activeTag));
   const [activeTab, setActiveTab] = useState<string>(queryTag || defaultTab);
 
   function activeTagSetter(activeTag: string) {
-    setTabs(getTabs());
     setActiveTag(activeTag);
+    setTabs(getTabs(activeTag));
     setActiveTab(activeTag);
     setCurrentPage(1);
   }
   function activeTabSetter(activeTab: string) {
+    /* drop active tab */
     if (activeTag !== undefined) {
       setActiveTag(undefined);
       setTabs(getTabs());
@@ -59,7 +60,7 @@ export function FeedPage() {
     getTags().then((res) => setTags(res.tags));
   }, []);
   useEffect(() => {
-    setTabs(getTabs());
+    setTabs(getTabs(activeTag));
   }, [user]);
 
   const [pageAmount, setPageAmount] = useState<number>(0);
